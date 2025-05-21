@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-wrapper" data-user-role="{{ user_role }}">
+        <header class="dashboard-header">
+            <h1>Customer Dashboard</h1>
+            <div class="user-info">
+                <span>Welcome, {{ username }} ({{ user_role }})</span>
+                <a href="{{ url_for('logout') }}" class="btn btn-logout">Logout</a>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <aside class="filters-sidebar">
+                <h2>Filters</h2>
+                <div class="filter-group">
+                    <label for="division-filter">Division:</label>
+                    <select id="division-filter">
+                        <option value="all">All Divisions</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="gender-filter">Gender:</label>
+                    <select id="gender-filter">
+                        <option value="all">All Genders</option>
+                    </select>
+                </div>
+                <button id="reset-filters-btn" class="btn btn-secondary">Reset Filters</button>
+            </aside>
+
+            <section class="content-area">
+                <div class="table-container card">
+                    <h2>Customer Data</h2>
+                    <div class="table-wrapper">
+                        <table id="customer-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Division</th>
+                                    <th>Gender</th>
+                                    <th>Marital Status</th>
+                                    <th>Age</th>
+                                    <th>Income</th>
+                                    {% if user_role == 'Admin' %}
+                                    <th>Actions</th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data rows will be populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="visualizations-container">
+                    <div class="chart-card card">
+                        <h3>Total Income by Division</h3>
+                        <canvas id="incomeByDivisionChart"></canvas>
+                    </div>
+                    <div class="chart-card card">
+                        <h3>Gender Distribution</h3>
+                        <canvas id="genderDistributionChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
