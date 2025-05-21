@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1a - Interactive Bar Chart (Value-Colored)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="chart-wrapper">
+        <div class="chart-container">
+            <canvas id="myBarChart"></canvas>
+        </div>
+        <div class="legend-container">
+            <div class="legend-title">TotalValue</div>
+            <div id="colorLegend" class="legend-gradient"></div>
+            <div id="legendLabels" class="legend-labels">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
